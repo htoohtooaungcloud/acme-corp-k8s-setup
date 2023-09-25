@@ -123,7 +123,7 @@ helm install promtail grafana/promtail --set "loki.serviceName=loki" -n monitori
 
 # git setup for gitops
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/cynapse.io.id_rsa
+ssh-add ~/.ssh/cynapse-ai
 ssh -T git@github.com
 
 # create git repo via api
