@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup.git
     targetRevision: HEAD 
-    path: mongo-argo
+    path: frontend-backend-mongo
   destination:
     server: https://54.169.18.228:6443
     namespace: my-mongoapp
