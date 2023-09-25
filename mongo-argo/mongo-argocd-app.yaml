@@ -10,9 +10,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:htoohtooaungcloud/cynapse-ai-k8s-setup.git
+    repoURL: https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup.git
     targetRevision: HEAD 
-    path: argo
+    path: mongo-argo
   destination:
     server: https://54.169.18.228:6443
     namespace: my-mongoapp
