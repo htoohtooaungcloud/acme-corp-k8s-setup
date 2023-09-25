@@ -1,20 +1,8 @@
-  provisioner "file" {
-    source      = "scripts/common.sh"
-    destination = "/home/ubuntu/common.sh"
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = "${file("./private-key.pem")}"
-      host        = "${self.public_ip}"
-    }
-  }
-
-# create private-key.pem file with write permisssion
+# Create private-key.pem file with write permisssion
 touch 
 
-# steps after provision
-# ssh for hosts
+## Steps after provision
+## SSH for hosts
 ssh -i private-key.pem ubuntu@54.169.18.228
 ssh -i private-key.pem ubuntu@13.212.139.199
 ssh -i private-key.pem ubuntu@13.229.211.89
@@ -135,5 +123,21 @@ helm install promtail grafana/promtail --set "loki.serviceName=loki" -n monitori
 
 # git setup for gitops
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/cynapse-io
+ssh-add ~/.ssh/cynapse.io.id_rsa
 ssh -T git@github.com
+
+# create git repo via api
+curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer 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" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/user/repos \
+  -d '{"name":"cynapse-ai-k8s-setup","description":"This is my test repo!","homepage":"https://github.com","private":false,"is_template":true}'
+
+
+# let install necessary stuffs for argocd 
+ubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml
+kubectl edit service/argocd-server -n argocd # to NodePort
+kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode; echo
