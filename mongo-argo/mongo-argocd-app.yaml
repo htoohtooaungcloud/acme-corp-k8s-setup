@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mongo-argocd
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: mongo-argo
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:htoohtooaungcloud/cynapse-ai-k8s-setup.git
+    targetRevision: HEAD 
+    path: argo
+  destination:
+    server: https://54.169.18.228:6443
+    namespace: my-mongoapp
+  syncPolicy:
+    automated: 
+      prune: true 
+      selfHeal: true 
+    syncOptions:     
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
