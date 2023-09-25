@@ -1,0 +1,29 @@
+# directories
+.terraform/
+
+
+### Terraform ###
+# Local .terraform directories
+**/.terraform/*
+
+
+# files
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+# logs
+*.log
+
+# keys
+*.pem
+
+# hostsfile
+./files/hosts
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.jso
