@@ -24,12 +24,11 @@
 11. Create GitHub repository as a version control system for GitOps (Singel source of truth, Continuous reconciliation)
 12. Install argocd for GitOps workflow.
 
-## Technology and tech stack
+## Technology and tech stack for this task
 
-### Terraform[^1]
-'''
-Terraform is a Infrastructure as code and provisioning tools which is usually used to build your cloud or non-cloud environment using it's HCL language. Terraform "state" file is crucial and need to keep versioning enabled place.
-'''
+### *Terraform* (Infrastructure as Code)
+### *Ansible* (Configuration Management)
+### *Kubernetes* (Container Orchestation)
 
 
 
