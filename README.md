@@ -6,7 +6,10 @@
 # Preposed Architecture
 ![kubernetes-aws-observability](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/46aa58ee-0196-43ae-9475-45d4c8b05e60)
 
-## Taks list
+# Well-Architected DevOps Cloud-Native Architecture
+![well-architect-devops](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/e2328faa-5fda-458f-8758-bae2692c477a)
+
+## Task list 
 1. Build the infrastructure using terraform and several EC2 Instances in AWS "ap-southeast-1" + VPC + Subnets + IGW + KeyPair + SecuritGroups and others necessary resources.
 2. Create the ansible-terraform provider resouces for ENVIRONMENT VARIABILE before carry out configuration changes using Ansible.
 3. terraform apply and build the infrastructer
@@ -113,11 +116,7 @@ sudo echo "<public-ip-worker-node02> worker-node02  worker-node01.cynapse.io" >>
 sudo echo  "172-31-41-62  worker-node02  worker-node02.cynapse.io" >> /etc/hosts
 ```
 
-
-# test the svc with cilium
-
-
-## Preperation for install longhorn
+### Preperation for install longhorn
 ```
 sudo vi /etc/multipath.conf
 
