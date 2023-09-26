@@ -6,21 +6,21 @@
 # Preposed architecture
 ![kubernetes-aws-observability](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/46aa58ee-0196-43ae-9475-45d4c8b05e60)
 
-## Create private-key.pem file with write permisssion only after terraform apply
+### Create private-key.pem file with write permisssion only after terraform apply in you vscode directory
 ```
 touch private-key.pem
 touch 
 ```
 
-## Steps after provision
-## SSH for hosts
+### Steps after provision
+### SSH for hosts
 ```
 ssh -i private-key.pem ubuntu@54.169.18.228
 ssh -i private-key.pem ubuntu@13.212.139.199
 ssh -i private-key.pem ubuntu@13.229.211.89
 ```
 
-## Change the permission of the scripts file in each server then execute
+### Change the permission of the scripts file in each server then execute
 ```
 sudo chmod +x *.sh
 bash common.sh # for all nodes
