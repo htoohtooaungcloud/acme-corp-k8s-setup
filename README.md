@@ -26,9 +26,9 @@
 
 ## Technology and tech stack
 
-# Terraform[^1]
+### Terraform[^1]
 '''
-[Terraform is a Infrastructure as code and provisioning tools which is usually used to build your cloud or non-cloud environment using it's HCL language. Terraform "state" file is crucial and need to keep versioning enabled place.
+Terraform is a Infrastructure as code and provisioning tools which is usually used to build your cloud or non-cloud environment using it's HCL language. Terraform "state" file is crucial and need to keep versioning enabled place.
 '''
 
 
