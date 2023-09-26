@@ -1,4 +1,4 @@
-# Kubernetes managed applications and observability
+# Kubernetes Managed Applications and Observability Task
 1. Install Kubernetes locally on your laptop with the distribution of your choice or feel free to use the cloud environment as well.
 2. Install a sample application (of your choice) that connects to a database that is managed by your Kubernetes cluster
 3. Push the logs into Prometheus/Loki and show us that you are able to display metrics nicely in Grafana
@@ -9,11 +9,15 @@
 ### Create private-key.pem file with write permisssion only after terraform apply in you vscode directory
 ```
 touch private-key.pem
-touch 
+sudo chmod 600 private-key.pem
+```
+### Let's use Ansible to make changes on each server. If any errors occur, manual SSH into the server to make the necessary changes
+```
+ansible-playbook -i inventory.yml playbook.yml
 ```
 
-### Steps after provision
-### SSH for hosts
+### Steps to do after provision
+### SSH command to login to server
 ```
 ssh -i private-key.pem ubuntu@54.169.18.228
 ssh -i private-key.pem ubuntu@13.212.139.199
