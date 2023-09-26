@@ -24,6 +24,15 @@
 11. Create GitHub repository as a version control system for GitOps (Singel source of truth, Continuous reconciliation)
 12. Install argocd for GitOps workflow.
 
+## Technology and tech stack
+
+Terraform[^1]
+
+[^1] Terraform is a Infrastructure as code and provisioning tools which is usually used to build your cloud or non-cloud environment using it's HCL language. Terraform "state" file is crucial and need to keep versioning enabled place.
+
+
+
+
 
 ### Create private-key.pem file with write permisssion only after terraform apply in you vscode directory
 ```
