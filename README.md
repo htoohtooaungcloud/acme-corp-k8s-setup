@@ -26,13 +26,16 @@
 
 ## Technology and tech stack for this task
 
-### *Terraform* (Infrastructure as Code)
-### *Ansible* (Configuration Management)
-### *Kubernetes* (Container Orchestation)
-
-
-
-
+*Terraform* (Infrastructure as Code)
+*Ansible* (Configuration Management)
+*Kubernetes* (Container Orchestation)
+*Cilium* (Container Network Interface)
+*Grafana* (Visualization)
+*Premetheus* (Metrics)
+*Grafana Loki* (Logging)
+*GitHub* (Version Control System)
+*ArgoCD* (GitOps)
+*Mongo-express & Mongo-db" (Business application)
 
 ### Create private-key.pem file with write permisssion only after terraform apply in you vscode directory
 ```
