@@ -3,7 +3,10 @@
 2. Install a sample application (of your choice) that connects to a database that is managed by your Kubernetes cluster
 3. Push the logs into Prometheus/Loki and show us that you are able to display metrics nicely in Grafana
 
-## create private-key.pem file with write permisssion only after terraform apply
+# Preposed architecture
+![kubernetes-aws-observability](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/46aa58ee-0196-43ae-9475-45d4c8b05e60)
+
+## Create private-key.pem file with write permisssion only after terraform apply
 ```
 touch private-key.pem
 touch 
@@ -40,7 +43,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 --------------------------------------------
-## Join to master-node01 from worker nodes
+## Join to master-node01 from worker nodes to form kubernetes cluster
 --------------------------------------------
 ```
 sudo kubeadm join <public-ip-master-node>:6443 --token njimf1.pxbir7lvm7w7qd6s \
@@ -51,6 +54,22 @@ sudo kubeadm join <public-ip-master-node>:6443 --token njimf1.pxbir7lvm7w7qd6s \
 ## Set some host configure in each server 
 ```
 sudo hostnamectl set-hostname master-node01
+sudo echo "<public-ip-master-node>  master-node01  master-node01.cynapse.io" >> /etc/hosts
+sudo echo "172-31-39-238  master-node01  master-node01.cynapse.io" >> /etc/hosts
+sudo echo "<public-ip-worker-node01> worker-node01  worker-node01.cynapse.io" >> /etc/hosts
+sudo echo "172.31.43.65 worker-node01  worker-node01.cynapse.io" >> /etc/hosts
+sudo echo "<public-ip-worker-node02> worker-node02  worker-node01.cynapse.io" >> /etc/hosts
+sudo echo  "172-31-41-62  worker-node02  worker-node02.cynapse.io" >> /etc/hosts
+
+sudo hostnamectl set-hostname worker-node01
+sudo echo "<public-ip-master-node>  master-node01  master-node01.cynapse.io" >> /etc/hosts
+sudo echo "172-31-39-238  master-node01  master-node01.cynapse.io" >> /etc/hosts
+sudo echo "<public-ip-worker-node01> worker-node01  worker-node01.cynapse.io" >> /etc/hosts
+sudo echo "172.31.43.65 worker-node01  worker-node01.cynapse.io" >> /etc/hosts
+sudo echo "<public-ip-worker-node02> worker-node02  worker-node01.cynapse.io" >> /etc/hosts
+sudo echo  "172-31-41-62  worker-node02  worker-node02.cynapse.io" >> /etc/hosts
+
+sudo hostnamectl set-hostname worker-node02
 sudo echo "<public-ip-master-node>  master-node01  master-node01.cynapse.io" >> /etc/hosts
 sudo echo "172-31-39-238  master-node01  master-node01.cynapse.io" >> /etc/hosts
 sudo echo "<public-ip-worker-node01> worker-node01  worker-node01.cynapse.io" >> /etc/hosts
