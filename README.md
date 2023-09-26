@@ -35,7 +35,7 @@
 * *Grafana Loki* (Logging)
 * *GitHub* (Version Control System)
 * *ArgoCD* (GitOps)
-* *Mongo-express & Mongo-db" (Business application)
+* *Mongo-express & Mongo-db* (Business Application)
 
 ### Create private-key.pem file with write permisssion only after terraform apply in you vscode directory
 ```
