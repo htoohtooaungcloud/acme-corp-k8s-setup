@@ -13,12 +13,12 @@
 4. Once we done deploying infrastructure in AWS, execute "ansible-playbook -i <file>". (Some of the stages has problem and need to fixed. Therefore, stick to manual stepup in each server)
 5. Run the "common.sh", "master.sh" and join to the master-node from worker-nodes to form kubernetes cluster using Kubeadm Bootstrap setup.
 6. We're going to use cilium as CNI and disable the kube-proxy. burdens because it eBPF features. 
-  - (Basically, it allows to run sandbox programs in the Linux Kernel without going back and forth between Kernel space and userspace which is what iptables do)
+    - (Basically, it allows to run sandbox programs in the Linux Kernel without going back and forth between Kernel space and userspace which is what iptables do)
 7. We'll be using cilium as loadbalancer instead of metallb as well. However, we still need to create AWS Elastic-LoadBalancer and point to the kubernets api server endpoint 6443 to expose service as LoadBalancer. 
-  - This is need to be done and compulsory, but as for now let's stick to NodePort when we expose the kubernetes services.
+    - This is need to be done and compulsory, but as for now let's stick to NodePort when we expose the kubernetes services.
 8. Deploy the applications using kubectl command (Mongo-frontend app,  Mongodb app). Using Deployment for frontend-mongo express app and StatefulSet for mongo-db app.
 9. Deploy the observability applicaitons using helm (Prometheus, Grafana and Grafana Loki). 
-  - **Note the (1) kube-prometheus-stack and loki-stack helm charts should be installed.**
+    - Note the (1) kube-prometheus-stack and loki-stack helm charts should be installed.
 10. Expose the service for Prometheus, Grafana, Mongo-express. In this case, I'm using NodePort.
 11. Login via Web access and explore how to display the metrics and logs from Grafana
 11. Create GitHub repository as a version control system for GitOps (Singel source of truth, Continuous reconciliation)
