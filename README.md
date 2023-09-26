@@ -1,5 +1,5 @@
 # Kubernetes managed applications and observability
-1. Install Kubernetes locally on your laptop with the distribution of your choice
+1. Install Kubernetes locally on your laptop with the distribution of your choice or feel free to use the cloud environment as well.
 2. Install a sample application (of your choice) that connects to a database that is managed by your Kubernetes cluster
 3. Push the logs into Prometheus/Loki and show us that you are able to display metrics nicely in Grafana
 
