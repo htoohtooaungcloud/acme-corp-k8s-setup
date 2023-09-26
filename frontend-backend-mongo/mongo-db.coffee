@@ -1,19 +1,19 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   namespace: my-mongoapp
   name: mongodb-deployment
+  labels:
+    app: mongodb
 spec:
+  replicas: 4
   selector:
     matchLabels:
-      app: mongodb # has to match .spec.template.metadata.labels
-  serviceName: "mongodb-service"
-  replicas: 2 # by default is 1
-  minReadySeconds: 10
+      app: mongodb
   template:
     metadata:
       labels:
-        app: mongodb # has to match .spec.selector.matchLabels
+        app: mongodb
     spec:
       containers:
       - name: mongodb
@@ -44,3 +44,4 @@ spec:
     - protocol: TCP
       port: 27017 # listening port to service
       targetPort: 27017 # accessing port to pod
+
