@@ -4,7 +4,7 @@ metadata:
   name: "cynapse-svc-ippool"
 spec:
   cidrs:
-  - cidr: "54.169.18.228/32"
+  - cidr: "54.169.18.228/29"
   # serviceSelector:
   #   matchLabels:
   #     app: http-echo

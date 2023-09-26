@@ -14,7 +14,7 @@ spec:
     targetRevision: HEAD 
     path: frontend-backend-mongo
   destination:
-    server: https://54.169.18.228:6443
+    server: https://kubernetes.default.svc
     namespace: my-mongoapp
   syncPolicy:
     automated: 
