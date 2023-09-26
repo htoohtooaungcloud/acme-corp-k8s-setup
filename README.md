@@ -6,6 +6,25 @@
 # Preposed architecture
 ![kubernetes-aws-observability](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/46aa58ee-0196-43ae-9475-45d4c8b05e60)
 
+## Taks list
+1. Build the infrastructure using terraform and several EC2 Instances in AWS "ap-southeast-1" + VPC + Subnets + IGW + KeyPair + SecuritGroups and others necessary resources.
+2. Create the ansible-terraform provider resouces for ENVIRONMENT VARIABILE before carry out configuration changes using Ansible.
+3. terraform apply and build the infrastructer
+4. Once we done deploying infrastructure in AWS, execute "ansible-playbook -i <file>". (Some of the stages has problem and need to fixed. Therefore, stick to manual stepup in each server)
+5. Run the "common.sh", "master.sh" and join to the master-node from worker-nodes to form kubernetes cluster using Kubeadm Bootstrap setup.
+6. We're going to use cilium as CNI and disable the kube-proxy. burdens because it eBPF features. 
+  - (Basically, it allows to run sandbox programs in the Linux Kernel without going back and forth between Kernel space and userspace which is what iptables do)
+7. We'll be using cilium as loadbalancer instead of metallb as well. However, we still need to create AWS Elastic-LoadBalancer and point to the kubernets api server endpoint 6443 to expose service as LoadBalancer. 
+  - This is need to be done and compulsory, but as for now let's stick to NodePort when we expose the kubernetes services.
+8. Deploy the applications using kubectl command (Mongo-frontend app,  Mongodb app). Using Deployment for frontend-mongo express app and StatefulSet for mongo-db app.
+9. Deploy the observability applicaitons using helm (Prometheus, Grafana and Grafana Loki). 
+  - **Note the (1) kube-prometheus-stack and loki-stack helm charts should be installed.**
+10. Expose the service for Prometheus, Grafana, Mongo-express. In this case, I'm using NodePort.
+11. Login via Web access and explore how to display the metrics and logs from Grafana
+11. Create GitHub repository as a version control system for GitOps (Singel source of truth, Continuous reconciliation)
+12. Install argocd for GitOps workflow.
+
+
 ### Create private-key.pem file with write permisssion only after terraform apply in you vscode directory
 ```
 touch private-key.pem
