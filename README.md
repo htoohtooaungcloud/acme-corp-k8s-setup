@@ -254,3 +254,4 @@ kubectl apply -f mongo-argo/mongo-argocd-app.yaml
 ![prometheus-alert-manager-screenshot](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/a6d405f1-0302-4d19-a37d-1b374dae4098)
 
 5. ArgoCD monitoring dashboard
+![argocd-screenshot](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/02a995f6-76c0-4de5-a349-0574d0e4f270)
