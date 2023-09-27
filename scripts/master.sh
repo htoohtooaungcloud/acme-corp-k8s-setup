@@ -12,8 +12,7 @@ sudo kubeadm init --skip-phases=addon/kube-proxy \
 --control-plane-endpoint $MASTER_IP:6443 \
 --apiserver-advertise-address=$MASTER_IP  \
 --apiserver-cert-extra-sans=$MASTER_IP \
---pod-network-cidr=$POD_CIDR \
---upload-certs 
+--pod-network-cidr=$POD_CIDR  
 
 # KUBECONFIG for in-VM kubectl usage
 mkdir -p $HOME/.kube
