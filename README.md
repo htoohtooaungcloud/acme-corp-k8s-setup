@@ -239,3 +239,18 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.pas
 kubectl apply -f mongo-argo-secret-pw.yaml # secret must create first
 kubectl apply -f mongo-argo/mongo-argocd-app.yaml
 ```
+## Test result for *Observability*
+
+1. Grafana monitoring dashboard (Grafan Loki)
+![grafana-loki-screenshot](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/5e4c7077-1324-4bce-af7c-78d4a33cb11b)
+
+2. Grafana monitoring dashboard (Grafan Prometheus)
+![grafan-prometheus](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/ea4ba660-b5d7-4c9c-a0b8-022b701ad712)
+
+3. Prometheus monitoring dashboard (Prometheus)
+![prometheus-screenshot](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/90d8f88c-e035-4bc6-8b85-271b625e9c24)
+
+4. Prometheus dashboard (Prometheus Alert-Manager)
+![prometheus-alert-manager-screenshot](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/a6d405f1-0302-4d19-a37d-1b374dae4098)
+
+5. ArgoCD monitoring dashboard
