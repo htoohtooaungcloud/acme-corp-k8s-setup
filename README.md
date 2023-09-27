@@ -7,7 +7,7 @@
 ![kubernetes-aws-observability](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/46aa58ee-0196-43ae-9475-45d4c8b05e60)
 
 # Well-Architected DevOps Cloud-Native Architecture
-![well-architect-devops](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/e2328faa-5fda-458f-8758-bae2692c477a)
+![well-architect-devops-(1)](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/fc52fb3e-220f-4b94-9678-3b2fddbb0f10)
 
 ## Task list 
 1. Build the infrastructure using terraform and several EC2 Instances in AWS "ap-southeast-1" + VPC + Subnets + IGW + KeyPair + SecuritGroups and others necessary resources.
