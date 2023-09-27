@@ -3,10 +3,10 @@
 2. Install a sample application (of your choice) that connects to a database that is managed by your Kubernetes cluster
 3. Push the logs into Prometheus/Loki and show us that you are able to display metrics nicely in Grafana
 
-# Current Architecture for assignment
+# Current Architecture for Assignment
 ![kubernetes-aws-observability](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/46aa58ee-0196-43ae-9475-45d4c8b05e60)
 
-# Future impreovement Architecture
+# Future Improvement Architecture
 ![well-architect-devops-(1)](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/fc52fb3e-220f-4b94-9678-3b2fddbb0f10)
 
 ## Task list 
