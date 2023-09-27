@@ -255,3 +255,4 @@ kubectl apply -f mongo-argo/mongo-argocd-app.yaml
 
 5. ArgoCD monitoring dashboard
 ![argocd-screenshot](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/02a995f6-76c0-4de5-a349-0574d0e4f270)
+
