@@ -222,7 +222,7 @@ kubectl get secret loki-promtail -n monitoring -o jsonpath="{.data.promtail\.yam
 ### Git setup for GitOps
 ```
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/cynapse-ai
+ssh-add ~/.ssh/<your-private-key>
 ssh -T git@github.com
 ```
 
