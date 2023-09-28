@@ -6,7 +6,7 @@ loki:
     s3:
       endpoint: my-loki-log-bucket.s3-accelerate.amazonaws.com
       bucketnames: my-loki-log-bucket
-      secret_access_key: gbrAJ/KrTCFm93G8MJiQdpJexpqsAeN7EQ98jpHd
-      access_key_id: AKIAY3X3IWDNTXA7Y434
+      secret_access_key: gbrAJ/KrTCFm93G8MJiQdpJexpqsAeN7Exxxxxx
+      access_key_id: AKIAY3X3IWDNTXXXXXX
 singleBinary:
   replicas: 1
