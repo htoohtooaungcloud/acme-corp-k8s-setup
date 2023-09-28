@@ -187,7 +187,7 @@ helm install kube-prometheus prometheus-community/kube-prometheus-stack -n monit
 helm list -A
 ```
 
-### Customize dashboard can be downloaded from here for Grafana dashboard import
+### Customize dashboard for Grafana and Prometheus metric scraping commands can be downloaded from here 
 [https://grafana.com/grafana/dashboards/]
 [https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-51.2.0/charts/kube-prometheus-stack/values.yaml]
 [https://sysdig.com/blog/prometheus-query-examples/]
@@ -201,7 +201,7 @@ helm install --values values.yaml loki --namespace monitoring grafana/loki-stack
 hem list -A
 ```
 
-## check the secret of kube-prometheus-grafana application to login thruough webpage
+## Check the secret of kube-prometheus-grafana application to login thruough webpage
 ```
 kubectl get secret kube-prometheus-grafana -n monitoring -o jsonpath="{.data.admin-password}" | base64 --decode 
 kubectl get secret loki-promtail -n monitoring -o jsonpath="{.data.promtail\.yaml}" | base64 --decode
