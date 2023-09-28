@@ -19,13 +19,13 @@
     - (Basically, it allows to run sandbox programs in the Linux Kernel without going back and forth between Kernel space and userspace which is what iptables do)
 7. We'll be using cilium as loadbalancer instead of metallb as well. However, we still need to create AWS Elastic-LoadBalancer and point to the kubernets api server endpoint 6443 to expose service as LoadBalancer. 
     - This is need to be done and compulsory, but as for now let's stick to NodePort when we expose the kubernetes services.
-8. Deploy the applications using kubectl command (Mongo-frontend app,  Mongodb app). Using Deployment for frontend-mongo express app and StatefulSet for mongo-db app.
-9. Deploy the observability applicaitons using helm (Prometheus, Grafana and Grafana Loki). 
-    - Note the (1) kube-prometheus-stack and loki-stack helm charts should be installed.
+8. Deploy the applications using kubectl command (Mongo-frontend app,  Mongodb app). Using ***Deployment*** for frontend-mongo express app and ***StatefulSet*** for mongo-db app.
+9. Deploy the observability applications using helm (Prometheus, Grafana and Grafana Loki). 
+    - Note that ***kube-prometheus-stack*** and ***loki-stack*** helm charts should be installed.
 10. Expose the service for Prometheus, Grafana, Mongo-express. In this case, I'm using NodePort.
 11. Login via Web access and explore how to display the metrics and logs from Grafana
 11. Create GitHub repository as a version control system for GitOps (Singel source of truth, Continuous reconciliation)
-12. Install argocd for GitOps workflow.
+12. Install ***Argocd*** for GitOps workflow.
 
 ## Technology and tech stack for this task
 
