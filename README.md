@@ -191,6 +191,7 @@ helm list -A
 [https://grafana.com/grafana/dashboards/]
 [https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-51.2.0/charts/kube-prometheus-stack/values.yaml]
 [https://sysdig.com/blog/prometheus-query-examples/]
+[https://grafana.com/blog/2023/04/12/how-to-collect-and-query-kubernetes-logs-with-grafana-loki-grafana-and-grafana-agent/]
 
 
 ## Loki installation setup
