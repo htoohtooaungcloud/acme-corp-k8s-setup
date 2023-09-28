@@ -141,7 +141,7 @@ chmod +x environment_check.sh
 ./environment_check.sh
 ```
 
-### rectify the errors for nfs-common (all nodes)
+### Fix the errors for nfs-common (all nodes)
 ```
 sudo apt install nfs-common -y
 sudo systemctl status iscsid
@@ -150,7 +150,7 @@ sudo systemctl enable iscsid
 sudo systemctl status iscsid
 ```
 
-### test and verity again in worker-nodes
+### Test and verity again in worker-nodes
 ```
 ./environment_check.sh
 ```
@@ -173,10 +173,21 @@ helm search repo prometheus | grep -i kube-prometheus-stack
 ```
 
 ### Verify
+```
 NAME                                              	CHART VERSION	APP VERSION	DESCRIPTION                                       
 prometheus-community/kube-prometheus-stack        	50.0.0       	v0.67.1    	kube-prometheus-stack collects Kubernetes manif...
+```
+
+### Helm install command for Prometheus (kube-prometheus-stack) in **monitoring** namespace
+``` 
 helm install kube-prometheus prometheus-community/kube-prometheus-stack -n monitoring
-### Customize dashboard can be downloaded from here 
+```
+### Verify
+```
+helm list -A
+```
+
+### Customize dashboard can be downloaded from here for Grafana dashboard import
 [https://grafana.com/grafana/dashboards/]
 [https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-51.2.0/charts/kube-prometheus-stack/values.yaml]
 [https://sysdig.com/blog/prometheus-query-examples/]
@@ -203,7 +214,7 @@ kubectl get secret loki-promtail -n monitoring -o jsonpath="{.data.promtail\.yam
 kubectl get secret loki-promtail -n monitoring -o jsonpath="{.data.promtail\.yaml}" | base64 --decode > promtail.yaml
 ```
 
-Modification
+### Modification
 > Delete the existing secret loki-promtail and apply new secret --from-file=./promtail.yaml
 > Delete all pods "kubectl delete pod <pod-name> -n monitoring
 
