@@ -4,10 +4,11 @@
 3. Push the logs into Prometheus/Loki and show us that you are able to display metrics nicely in Grafana
 
 # Current Architecture for Assignment
-![kubernetes-aws-observability](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/46aa58ee-0196-43ae-9475-45d4c8b05e60)
+![implemented-cynapse-architecture](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/d926ad1e-21e0-4cbe-9c24-860cd564c680)
 
 # Future Improvement Architecture
-![well-architect-devops-(1)](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/fc52fb3e-220f-4b94-9678-3b2fddbb0f10)
+![well-architected-improvement-architecture](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/22e1c26e-b47e-4268-a03d-8b9ab62cb32c)
+
 
 ## Task list 
 1. Build the infrastructure using terraform and several EC2 Instances in AWS "ap-southeast-1" + VPC + Subnets + IGW + KeyPair + SecuritGroups and others necessary resources.
