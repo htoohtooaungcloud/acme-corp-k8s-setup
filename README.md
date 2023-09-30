@@ -46,6 +46,12 @@
 touch private-key.pem
 sudo chmod 600 private-key.pem
 ```
+## Verify the host and variable with ansible
+```
+ansible-inventory -i inventory.yml --graph
+ansible-inventory -i inventory.yml --graph --vars
+```
+
 ### Let's use Ansible to make changes on each server. If any errors occur, manual SSH into the server to make the necessary changes
 ```
 ansible-playbook -i inventory.yml playbook.yml
@@ -186,6 +192,7 @@ helm install kube-prometheus prometheus-community/kube-prometheus-stack -n monit
 ### Verify
 ```
 helm list -A
+kubectl --namespace monitoring get pods -l "release=kube-prometheus"
 ```
 
 ### Customize dashboard for Grafana and Prometheus metric scraping commands can be downloaded from here 
