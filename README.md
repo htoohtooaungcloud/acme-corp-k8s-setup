@@ -6,17 +6,17 @@
 # Current Architecture for Assignment
 ![implemented-cynapse-architecture](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/d926ad1e-21e0-4cbe-9c24-860cd564c680)
 
-# Future Improvement Architecture
+# Improvement Architecture
 ![well-architected-improvement-architecture](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/22e1c26e-b47e-4268-a03d-8b9ab62cb32c)
 
 
 ## Task list 
-1. Build the infrastructure using terraform and several EC2 Instances in AWS "ap-southeast-1" + VPC + Subnets + IGW + KeyPair + SecuritGroups and others necessary resources.
+1. Build the infrastructure using terraform and 3 EC2 Instances in the AWS "ap-southeast-1" + VPC + Subnets + IGW + KeyPair + SecuritGroups and others necessary resources.
 2. Create the ansible-terraform provider resouces for ENVIRONMENT VARIABILE before carry out configuration changes using Ansible.
-3. terraform apply and build the infrastructer
-4. Once we done deploying infrastructure in AWS, execute "ansible-playbook -i <file>". (Some of the stages has problem and need to fixed. Therefore, stick to manual stepup in each server)
+3. terraform apply and build the infrastructure.
+4. Once we done deploying infrastructure in AWS, execute "ansible-playbook -i <file>". (Some of the stages has problem and need to fixed. Therefore, stick to manual setup in each server using script files)
 5. Run the "common.sh", "master.sh" and join to the master-node from worker-nodes to form kubernetes cluster using Kubeadm Bootstrap setup.
-6. We're going to use cilium as CNI and disable the kube-proxy. burdens because it eBPF features. 
+6. We're going to use cilium as CNI and disable the kube-proxy. Cilium is powerful tool which is fueled by eBPF. 
     - (Basically, it allows to run sandbox programs in the Linux Kernel without going back and forth between Kernel space and userspace which is what iptables do)
 7. We'll be using cilium as loadbalancer instead of metallb as well. However, we still need to create AWS Elastic-LoadBalancer and point to the kubernets api server endpoint 6443 to expose service as LoadBalancer. 
     - This is need to be done and compulsory, but as for now let's stick to NodePort when we expose the kubernetes services.
@@ -41,9 +41,10 @@
 * *ArgoCD* (GitOps)
 * *Mongo-express & Mongo-db* (Business Application)
 
-### Create private-key.pem file with write permisssion only after terraform apply in you vscode directory
+### Create private-key.pem file and then change to write permisssion only after terraform apply in your vscode 
 ```
 touch private-key.pem
+terraform apply
 sudo chmod 600 private-key.pem
 ```
 ## Verify the host and variable with ansible
@@ -57,9 +58,10 @@ ansible-inventory -i inventory.yml --graph --vars
 ansible-playbook -i inventory.yml playbook.yml
 ```
 
-### Steps to do after provision
+### Steps to do after provision (Read only permission to private-key)
 ### SSH command to login to server
 ```
+chomd 400 private-key.pem
 ssh -i private-key.pem ubuntu@54.169.18.228
 ssh -i private-key.pem ubuntu@13.212.139.199
 ssh -i private-key.pem ubuntu@13.229.211.89
@@ -95,8 +97,7 @@ sudo kubeadm join <public-ip-master-node>:6443 --token njimf1.pxbir7lvm7w7qd6s \
 	--discovery-token-ca-cert-hash sha256:4613fa29c8ab29a23d254b1ceff7ebe2f3765f1b29d7ba0fa1633ace6c7f9ce1
 ```
 
-
-## Set some host configure in each server 
+## Set the host configuration in each server 
 ```
 sudo hostnamectl set-hostname master-node01
 sudo echo "<public-ip-master-node>  master-node01  master-node01.cynapse.io" >> /etc/hosts
@@ -163,8 +164,8 @@ sudo systemctl status iscsid
 ```
 
 ### Mongo applications deploymemnt through kubectl command in frontend-backend-mongo
-please go the fronedend-backend-mongo app and deploy the necessary yaml file with "kubectl apply -f" 
-please creat configmap and secret yaml at first
+please go the fronedend-backend-mongo app directory and deploy the necessary yaml file with "kubectl apply -f" 
+please creat configmap and secret yaml at first before you run the deployment and statefulset manifest yaml file.
 ```
 kubectl apply -f mongo-cm.yaml
 kubectl apply -f mongo-secret.yaml
@@ -186,6 +187,7 @@ prometheus-community/kube-prometheus-stack        	50.0.0       	v0.67.1    	kub
 ```
 
 ### Helm install command for Prometheus (kube-prometheus-stack) in **monitoring** namespace
+#### This helm chart deploys everything automatically that we need to get prometheus up and running on the kubernetes cluster
 ``` 
 helm install kube-prometheus prometheus-community/kube-prometheus-stack -n monitoring
 ```
@@ -194,13 +196,6 @@ helm install kube-prometheus prometheus-community/kube-prometheus-stack -n monit
 helm list -A
 kubectl --namespace monitoring get pods -l "release=kube-prometheus"
 ```
-
-### Customize dashboard for Grafana and Prometheus metric scraping commands can be downloaded from here 
-[https://grafana.com/grafana/dashboards/]
-[https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-51.2.0/charts/kube-prometheus-stack/values.yaml]
-[https://sysdig.com/blog/prometheus-query-examples/]
-[https://grafana.com/blog/2023/04/12/how-to-collect-and-query-kubernetes-logs-with-grafana-loki-grafana-and-grafana-agent/]
-
 
 ## Loki installation setup
 ```
@@ -227,14 +222,14 @@ kubectl get secret loki-promtail -n monitoring -o jsonpath="{.data.promtail\.yam
 > Delete the existing secret loki-promtail and apply new secret --from-file=./promtail.yaml
 > Delete all pods "kubectl delete pod <pod-name> -n monitoring
 
-### Git setup for GitOps
+### Git setup to access the GitHub for GitOps
 ```
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/<your-private-key>
 ssh -T git@github.com
 ```
 
-### Create git repo via api but msut have to export api key prior
+### Create GitHub repo via API but must have to export API key prior from you GitHub Account
 ```
 curl -L \
   -X POST \
@@ -245,7 +240,7 @@ curl -L \
   -d '{"name":"cynapse-ai-k8s-setup","description":"This is my repo!","homepage":"https://github.com","private":false,"is_template":true}'
 ```
 
-### Export argocd values.yaml file from helm chart
+### Export argocd values.yaml file from helm chart to explore
 ```
 helm show values argo/argocd-apps > values.yaml
 ```
@@ -276,3 +271,40 @@ kubectl apply -f mongo-argo/mongo-argocd-app.yaml
 5. ArgoCD monitoring dashboard
 ![argocd-screenshot](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/02a995f6-76c0-4de5-a349-0574d0e4f270)
 
+
+## Customize dashboard for Grafana and Prometheus metric scraping commands can be downloaded from here 
+[https://grafana.com/grafana/dashboards/]
+[https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-51.2.0/charts/kube-prometheus-stack/values.yaml]
+[https://sysdig.com/blog/prometheus-query-examples/]
+[https://grafana.com/blog/2023/04/12/how-to-collect-and-query-kubernetes-logs-with-grafana-loki-grafana-and-grafana-agent/]
+
+## Some useful Prometheus Metric Scarping technique
+#### Count of pods per cluster and namespace
+```
+sum by (namespace) (kube_pod_info)
+```
+
+#### Query for all the pods that have been restarting
+```
+sum by (namespace)(changes(kube_pod_status_ready{condition="true"}[5m]))
+```
+
+#### Node memory active using gigabytes
+```
+node_memory_Active_bytes / 1024 / 1024 / 1024
+
+```
+#### Node memory active using bytes (Past 5 mins)
+```
+node_memory_Active_bytes[5m] 
+
+```
+#### To plot the "Rate" on the graph
+```
+rate(node_memory_Active_bytes[5m] )
+```
+
+#### Can expand the graph by using "Add Panel" and execute 
+```
+rate(node_cpu_seconds_total[5m])
+```

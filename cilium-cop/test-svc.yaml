@@ -10,6 +10,7 @@ spec:
     image: hashicorp/http-echo:0.2.3
     args:
     - "-text=foo"
+    - -listen=:8080
 ---
 kind: Pod
 apiVersion: v1
@@ -23,15 +24,20 @@ spec:
     image: hashicorp/http-echo:0.2.3
     args:
     - "-text=bar"
+    - -listen=:8080
 ---
 kind: Service
 apiVersion: v1
 metadata:
   name: foo-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: http-echo
   ports:
   # Default port used by the image
-  - port: 5678
+  - name: http
+    port: 5678
+    protocol: TCP
+    targetPort: 8080
+
