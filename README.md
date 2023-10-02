@@ -18,12 +18,12 @@
 5. Run the "common.sh", "master.sh" and join to the master-node from worker-nodes to form kubernetes cluster using Kubeadm Bootstrap setup.
 6. We're going to use cilium as CNI and disable the kube-proxy. Cilium is powerful tool which is fueled by eBPF. 
     - (Basically, it allows to run sandbox programs in the Linux Kernel without going back and forth between Kernel space and userspace which is what iptables do)
-7. We'll be using cilium as loadbalancer instead of metallb as well. However, we still need to create AWS Elastic-LoadBalancer and point to the kubernets api server endpoint 6443 to expose service as LoadBalancer. 
-    - This is need to be done and compulsory, but as for now let's stick to NodePort when we expose the kubernetes services.
+7. We'll be using cilium as loadbalancer instead of metallb as well. However, need to create AWS Elastic-LoadBalancer and point to the kubernets api server endpoint 6443 to expose service as LoadBalancer. 
+    - This is need to be done and compulsory since we using AWS, but as for now let's stick to LoadBalancer when we expose the kubernetes services using EC2 Instace Public IP.
 8. Deploy the applications using kubectl command (Mongo-frontend app,  Mongodb app). Using ***Deployment*** for frontend-mongo express app and ***StatefulSet*** for mongo-db app.
 9. Deploy the observability applications using helm (Prometheus, Grafana and Grafana Loki). 
     - Note that ***kube-prometheus-stack*** and ***loki-stack*** helm charts should be installed.
-10. Expose the service for Prometheus, Grafana, Mongo-express. In this case, I'm using NodePort.
+10. Expose the service for Prometheus, Grafana, Mongo-express. In this case, I'm using LoadBalancer.
 11. Login via Web access and explore how to display the metrics and logs from Grafana
 11. Create GitHub repository as a version control system for GitOps (Singel source of truth, Continuous reconciliation)
 12. Install ***Argocd*** for GitOps workflow.
@@ -205,6 +205,13 @@ helm install --values values.yaml loki --namespace monitoring grafana/loki-stack
 hem list -A
 ```
 
+## Expose the service of the observability applications
+```
+kubectl edit svc kube-prometheus-kube-prome-alertmanager -n monitoring  # Change from Cluster IP to LoadBalancer
+kubectl edit svc kube-prometheus-kube-prome-prometheus -n monitoring # Change from Cluster IP to LoadBalancer
+kubectl edit svc kube-prometheus-grafana -n monitoring # Change from Cluster IP to LoadBalancer
+```
+
 ## Check the secret of kube-prometheus-grafana application to login thruough webpage
 ```
 kubectl get secret kube-prometheus-grafana -n monitoring -o jsonpath="{.data.admin-password}" | base64 --decode 
@@ -249,7 +256,7 @@ helm show values argo/argocd-apps > values.yaml
 ```
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml
-kubectl edit service/argocd-server -n argocd # to NodePort
+kubectl edit service/argocd-server -n argocd # to LoadBalancer
 kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode; echo # check the argocd ui login password
 kubectl apply -f mongo-argo-secret-pw.yaml # secret must create first
 kubectl apply -f mongo-argo/mongo-argocd-app.yaml
