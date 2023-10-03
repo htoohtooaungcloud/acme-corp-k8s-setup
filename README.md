@@ -218,7 +218,8 @@ kubectl get secret kube-prometheus-grafana -n monitoring -o jsonpath="{.data.adm
 kubectl get secret loki-promtail -n monitoring -o jsonpath="{.data.promtail\.yaml}" | base64 --decode
 ```
 > [!NOTE]
-> Add in grafana new connection http://10-0-2-150.loki.monitoring.svc.cluster.local:3100 to connect to loki-0 pod
+> ## Add in grafana new connection http://loki.monitoring.svc.cluster.local:3100 to connect to loki service 
+> ## Shouldn't connect to pod since pods are ephemeral
 
 ### Advanced loki testing
 ```
