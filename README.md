@@ -7,7 +7,7 @@
 ![implemented-cynapse-architecture](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/d926ad1e-21e0-4cbe-9c24-860cd564c680)
 
 # Improvement Architecture
-![well-architected-improvement-architecture](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/22e1c26e-b47e-4268-a03d-8b9ab62cb32c)
+![Well-Architected](https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup/assets/54118047/3291cd0e-4948-4409-95dd-515a93bd4ac7)
 
 
 ## Task list 
