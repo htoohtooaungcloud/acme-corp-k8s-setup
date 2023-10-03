@@ -11,7 +11,7 @@
 
 
 ## Task list 
-1. Build the infrastructure using terraform and 3 EC2 Instances in the AWS "ap-southeast-1" + VPC + Subnets + IGW + KeyPair + SecuritGroups and others necessary resources.
+1. Build the infrastructure using terraform and 3 EC2 Instances in the AWS "ap-southeast-1" + VPC + Subnets + IGW + KeyPair + SecurityGroups and others necessary resources.
 2. Create the ansible-terraform provider resouces for ENVIRONMENT VARIABILE before carry out configuration changes using Ansible.
 3. terraform apply and build the infrastructure.
 4. Once we done deploying infrastructure in AWS, execute "ansible-playbook -i <file>". (Some of the stages has problem and need to fixed. Therefore, stick to manual setup in each server using script files)
