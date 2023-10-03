@@ -19,7 +19,7 @@
 6. We're going to use cilium as CNI and disable the kube-proxy. Cilium is powerful tool which is fueled by eBPF. 
     - (Basically, it allows to run sandbox programs in the Linux Kernel without going back and forth between Kernel space and userspace which is what iptables do)
 7. We'll be using cilium as loadbalancer instead of metallb as well. However, need to create AWS Elastic-LoadBalancer and point to the kubernets api server endpoint 6443 to expose service as LoadBalancer. 
-    - This is need to be done and compulsory since we using AWS, but as for now let's stick to LoadBalancer when we expose the kubernetes services using EC2 Instace Public IP.
+    - This is need to be done and compulsory since we using AWS, but as for now let's stick to LoadBalancer from Cilium when we expose the kubernetes services using EC2 Instace Public IP.
 8. Deploy the applications using kubectl command (Mongo-frontend app,  Mongodb app). Using ***Deployment*** for frontend-mongo express app and ***StatefulSet*** for mongo-db app.
 9. Deploy the observability applications using helm (Prometheus, Grafana and Grafana Loki). 
     - Note that ***kube-prometheus-stack*** and ***loki-stack*** helm charts should be installed.
@@ -28,7 +28,7 @@
 11. Create GitHub repository as a version control system for GitOps (Singel source of truth, Continuous reconciliation)
 12. Install ***Argocd*** for GitOps workflow.
 
-## Technology and tech stack for this task
+## Technology and Tech Stack Using for Assignment
 
 * *Terraform* (Infrastructure as Code)
 * *Ansible* (Configuration Management)
