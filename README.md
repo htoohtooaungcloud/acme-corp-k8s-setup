@@ -12,21 +12,23 @@
 
 ## Task list 
 1. Build the infrastructure using terraform and 3 EC2 Instances in the AWS "ap-southeast-1" + VPC + Subnets + IGW + KeyPair + SecurityGroups and others necessary resources.
-2. Create the ansible-terraform provider resouces for ENVIRONMENT VARIABILE before carry out configuration changes using Ansible.
+2. Create the ansible-terraform provider resources for ENVIRONMENT VARIABILE before carry out configuration changes using Ansible.
 3. terraform apply and build the infrastructure.
-4. Once we done deploying infrastructure in AWS, execute "ansible-playbook -i <file>". (Some of the stages has problem and need to fixed. Therefore, stick to manual setup in each server using script files)
+4. Once we done deploying infrastructure in AWS, execute "ansible-playbook -i <file>". (Some of the stages has problem and need to fix. Therefore, stick to manual setup in each server using script files)
 5. Run the "common.sh", "master.sh" and join to the master-node from worker-nodes to form kubernetes cluster using Kubeadm Bootstrap setup.
 6. We're going to use cilium as CNI and disable the kube-proxy. Cilium is powerful tool which is fueled by eBPF. 
     - (Basically, it allows to run sandbox programs in the Linux Kernel without going back and forth between Kernel space and userspace which is what iptables do)
 7. We'll be using cilium as loadbalancer instead of metallb as well. However, need to create AWS Elastic-LoadBalancer and point to the kubernets api server endpoint 6443 to expose service as LoadBalancer. 
     - This is need to be done and compulsory since we using AWS, but as for now let's stick to LoadBalancer from Cilium when we expose the kubernetes services using EC2 Instace Public IP.
-8. Deploy the applications using kubectl command (Mongo-frontend app,  Mongodb app). Using ***Deployment*** for frontend-mongo express app and ***StatefulSet*** for mongo-db app.
-9. Deploy the observability applications using helm (Prometheus, Grafana and Grafana Loki). 
+8. Tried to install “Distributed Storage System” which is Longhorn but cannot mount to pods due to the EBS storage space. (# Note: Some basic steps are required to install longhorn in every nodes.)
+9. Deploy the applications using kubectl command (Mongo-frontend app,  Mongodb app). Using ***Deployment*** for frontend-mongo express app and ***StatefulSet*** for mongo-db app.
+10. Deploy the observability applications using helm (Prometheus, Grafana and Grafana Loki). 
     - Note that ***kube-prometheus-stack*** and ***loki-stack*** helm charts should be installed.
-10. Expose the service for Prometheus, Grafana, Mongo-express. In this case, I'm using LoadBalancer.
-11. Login via Web access and explore how to display the metrics and logs from Grafana
-11. Create GitHub repository as a version control system for GitOps (Singel source of truth, Continuous reconciliation)
-12. Install ***Argocd*** for GitOps workflow.
+11. Expose the service for Prometheus, Grafana, Mongo-express. In this case, I'm using LoadBalancer.
+12. Login via Web access and explore how to display the metrics and logs from Grafana
+13. Create GitHub repository as a version control system for GitOps (Singel source of truth, Continuous reconciliation)
+14. Install ***Argocd*** for GitOps workflow.
+15. Use CloudFlare as DNS and mapped the domain with Public IP Address of Nodes as "A" Record.
 
 ## Technology and Tech Stack Using for Assignment
 
