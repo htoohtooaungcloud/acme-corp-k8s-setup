@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/htoohtooaungcloud/cynapse-ai-k8s-setup.git
+    repoURL: https://github.com/htoohtooaungcloud/acme-crop-k8s-setup.git
     targetRevision: HEAD 
     path: frontend-backend-mongo
   destination:
